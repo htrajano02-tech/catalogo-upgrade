@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Catálogo | Upgrade Tecnologia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Barlow',sans-serif;background:#0e0e0e;min-height:100vh;}
+
+/* ── SPLASH ── */
+.splash{position:fixed;inset:0;background:#0a0900;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;z-index:100;transition:opacity 0.5s ease;}
+.splash.hide{opacity:0;pointer-events:none;}
+.particles{position:absolute;inset:0;pointer-events:none;}
+.p{position:absolute;border-radius:50%;background:#c9a84c;opacity:0;animation:pfloat 4s ease-in-out infinite;}
+@keyframes pfloat{0%{opacity:0;transform:translateY(0) scale(0.5);}30%{opacity:0.6;}70%{opacity:0.3;}100%{opacity:0;transform:translateY(-140px) scale(1.2);}}
+.circuit{position:absolute;inset:0;opacity:0.07;pointer-events:none;}
+.splash-logo-ring{width:96px;height:96px;border-radius:50%;border:2.5px solid #c9a84c;display:flex;align-items:center;justify-content:center;background:#111;opacity:0;animation:ringIn 0.6s 0.3s ease forwards;}
+@keyframes ringIn{from{opacity:0;transform:scale(0.6);}to{opacity:1;transform:scale(1);}}
+.splash-u{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:46px;color:#c9a84c;}
+.splash-brand{margin-top:20px;text-align:center;opacity:0;animation:fadeUp 0.7s 0.9s ease forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.splash-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;color:#c9a84c;letter-spacing:3px;line-height:1;}
+.splash-sub{font-size:11px;color:#666;letter-spacing:4px;text-transform:uppercase;margin-top:6px;}
+.splash-tagline{margin-top:26px;font-size:16px;color:#aaa;text-align:center;opacity:0;animation:fadeUp 0.7s 1.4s ease forwards;padding:0 2.5rem;line-height:1.6;}
+.splash-bar{width:64px;height:2px;background:#c9a84c22;border-radius:1px;margin-top:36px;overflow:hidden;opacity:0;animation:fadeUp 0.5s 1.8s ease forwards;}
+.splash-bar-fill{height:100%;width:0;background:#c9a84c;animation:barFill 2s 2s ease forwards;}
+@keyframes barFill{to{width:100%;}}
+.splash-btn{margin-top:32px;padding:13px 32px;background:transparent;border:1px solid #c9a84c;border-radius:6px;color:#c9a84c;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;opacity:0;animation:fadeUp 0.6s 4s ease forwards;transition:background 0.2s,color 0.2s;}
+.splash-btn:hover{background:#c9a84c;color:#0a0900;}
+
+/* ── CATALOG ── */
+.catalog{opacity:0;transition:opacity 0.5s ease;pointer-events:none;}
+.catalog.show{opacity:1;pointer-events:all;}
+
+.cat-header{background:#111;border-bottom:1px solid #c9a84c33;padding:1rem 1.2rem;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:10;}
+.hdr-ring{width:46px;height:46px;border-radius:50%;border:2px solid #c9a84c;display:flex;align-items:center;justify-content:center;background:#1a1600;flex-shrink:0;}
+.hdr-ring span{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#c9a84c;}
+.hdr-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;color:#c9a84c;letter-spacing:1px;line-height:1;}
+.hdr-city{font-size:10px;color:#555;letter-spacing:2px;text-transform:uppercase;margin-top:3px;}
+
+.sec-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:3px;color:#c9a84c88;text-transform:uppercase;padding:1.4rem 1.2rem 0.6rem;}
+
+/* ── PRODUCT CARDS ── */
+.card{margin:0 1.2rem 1.4rem;background:#161616;border:1px solid #252525;border-radius:14px;overflow:hidden;}
+.badge-row{display:flex;gap:6px;padding:12px 14px 0;}
+.badge{font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;padding:3px 9px;border-radius:4px;}
+.b-semi{background:#c9a84c18;color:#c9a84c;border:1px solid #c9a84c44;}
+.b-gar{background:#0d2e0d;color:#4db84d;border:1px solid #1f6b1f;}
+.img-wrap{width:100%;height:210px;overflow:hidden;background:#111;margin-top:10px;position:relative;}
+.img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+.img-fade{position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,#161616);}
+.card-body{padding:14px 16px 16px;}
+.prod-model{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;color:#f0f0f0;line-height:1.1;}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px;}
+.spec{background:#101010;border:1px solid #1e1e1e;border-radius:7px;padding:7px 10px;}
+.spec-l{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.5px;}
+.spec-v{font-size:13px;font-weight:500;color:#ccc;margin-top:2px;}
+hr.div{border:none;border-top:1px solid #1e1e1e;margin:14px 0;}
+.price-pix{font-size:12px;color:#777;}
+.price-pix strong{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700;color:#c9a84c;line-height:1;}
+.price-pix span{font-size:12px;color:#c9a84c88;}
+.price-parcel{font-size:13px;color:#888;margin-top:4px;}
+.price-parcel strong{color:#ddd;}
+.btn-wpp{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:16px;padding:15px;background:#0d2e15;border:1px solid #1a8a36;border-radius:9px;color:#25d366;font-weight:700;font-size:15px;text-decoration:none;transition:background 0.15s;}
+.btn-wpp:hover{background:#122e1a;}
+.btn-wpp svg{width:21px;height:21px;fill:#25d366;flex-shrink:0;}
+
+/* ── FOOTER ── */
+.trust{display:flex;justify-content:center;gap:18px;padding:1.4rem 1rem 0.6rem;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:11px;color:#444;}
+.trust-icon{font-size:14px;color:#c9a84c55;}
+footer{text-align:center;padding:0.6rem 1rem 2rem;}
+footer p{font-size:11px;color:#2e2e2e;}
+footer strong{color:#c9a84c44;}
+</style>
+</head>
+<body>
+
+<!-- ══ SPLASH ══ -->
+<div class="splash" id="splash">
+  <svg class="circuit" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="200" x2="390" y2="200" stroke="#c9a84c" stroke-width="0.5"/>
+    <line x1="0" y1="644" x2="390" y2="644" stroke="#c9a84c" stroke-width="0.5"/>
+    <line x1="90" y1="0" x2="90" y2="844" stroke="#c9a84c" stroke-width="0.5"/>
+    <line x1="300" y1="0" x2="300" y2="844" stroke="#c9a84c" stroke-width="0.5"/>
+    <circle cx="90" cy="200" r="5" fill="none" stroke="#c9a84c" stroke-width="1"/>
+    <circle cx="300" cy="200" r="5" fill="none" stroke="#c9a84c" stroke-width="1"/>
+    <circle cx="90" cy="644" r="5" fill="none" stroke="#c9a84c" stroke-width="1"/>
+    <circle cx="300" cy="644" r="5" fill="none" stroke="#c9a84c" stroke-width="1"/>
+    <line x1="90" y1="200" x2="150" y2="200" stroke="#c9a84c" stroke-width="2"/>
+    <line x1="240" y1="200" x2="300" y2="200" stroke="#c9a84c" stroke-width="2"/>
+    <line x1="90" y1="644" x2="150" y2="644" stroke="#c9a84c" stroke-width="2"/>
+    <circle cx="150" cy="200" r="4" fill="#c9a84c"/>
+    <circle cx="240" cy="200" r="4" fill="#c9a84c"/>
+    <circle cx="150" cy="644" r="4" fill="#c9a84c"/>
+  </svg>
+  <div class="particles" id="particles"></div>
+  <div class="splash-logo-ring"><span class="splash-u">U</span></div>
+  <div class="splash-brand">
+    <div class="splash-name">UPGRADE</div>
+    <div class="splash-sub">Tecnologia</div>
+  </div>
+  <div class="splash-tagline">Notebooks seminovos com garantia e qualidade</div>
+  <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+  <button class="splash-btn" id="btnEnter">Ver catálogo →</button>
+</div>
+
+<!-- ══ CATALOG ══ -->
+<div class="catalog" id="catalog">
+  <div class="cat-header">
+    <div class="hdr-ring"><span>U</span></div>
+    <div>
+      <div class="hdr-name">UPGRADE TECNOLOGIA</div>
+      <div class="hdr-city">São José do Rio Preto · SP</div>
+    </div>
+  </div>
+
+  <div class="sec-label">Notebooks disponíveis</div>
+
+  <!-- ═ PRODUTO 1 ═ -->
+  <!-- Para adicionar mais produtos, copie o bloco abaixo e cole após este -->
+  <div class="card">
+    <div class="badge-row">
+      <span class="badge b-semi">Seminovo</span>
+      <span class="badge b-gar">&#9673; 6 meses garantia</span>
+    </div>
+    <div class="img-wrap">
+      <!-- FOTO: substitua o src pela URL da foto hospedada no GitHub ou Google Drive -->
+      <img src="fotos/thinkpad-t480.jpg" alt="Lenovo ThinkPad T480"/>
+      <div class="img-fade"></div>
+    </div>
+    <div class="card-body">
+      <div class="prod-model">Lenovo ThinkPad T480</div>
+      <div class="specs">
+        <div class="spec"><div class="spec-l">Processador</div><div class="spec-v">Intel Core i5-8350U</div></div>
+        <div class="spec"><div class="spec-l">Memória RAM</div><div class="spec-v">8 GB DDR4</div></div>
+        <div class="spec"><div class="spec-l">Armazenamento</div><div class="spec-v">112 GB SSD</div></div>
+        <div class="spec"><div class="spec-l">Placa de vídeo</div><div class="spec-v">Intel UHD 620</div></div>
+      </div>
+      <hr class="div"/>
+      <div class="price-pix">À vista: <strong>R$ 1.600</strong> <span>Pix ou dinheiro</span></div>
+      <div class="price-parcel">Ou <strong>6x de R$ 299,83</strong> sem juros no cartão</div>
+      <a class="btn-wpp" href="https://wa.me/5517988023672?text=Ol%C3%A1!%20Vi%20o%20cat%C3%A1logo%20da%20Upgrade%20Tecnologia%20e%20tenho%20interesse%20no%20Lenovo%20ThinkPad%20T480.%20Poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.562 4.145 1.542 5.879L.057 23.75a.5.5 0 0 0 .614.614l5.872-1.485A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.814 9.814 0 0 1-5.012-1.374l-.36-.214-3.733.944.962-3.632-.236-.374A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Quero esse notebook
+      </a>
+    </div>
+  </div>
+  <!-- ═ FIM PRODUTO 1 ═ -->
+
+  <div class="trust">
+    <div class="trust-item"><span class="trust-icon">&#9673;</span> 6 meses garantia</div>
+    <div class="trust-item"><span class="trust-icon">&#9673;</span> 6x sem juros</div>
+    <div class="trust-item"><span class="trust-icon">&#9673;</span> São José do Rio Preto</div>
+  </div>
+  <footer><p>© 2026 <strong>Upgrade Tecnologia</strong> · Todos os direitos reservados</p></footer>
+</div>
+
+<script>
+// Partículas da splash
+const pc = document.getElementById('particles');
+for(let i=0;i<22;i++){
+  const el=document.createElement('div');
+  el.className='p';
+  const s=Math.random()*4+2;
+  el.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${3+Math.random()*3}s;`;
+  pc.appendChild(el);
+}
+// Entrar no catálogo
+document.getElementById('btnEnter').addEventListener('click',()=>{
+  const sp=document.getElementById('splash');
+  const ct=document.getElementById('catalog');
+  sp.classList.add('hide');
+  ct.classList.add('show');
+  setTimeout(()=>{sp.style.display='none';},600);
+});
+</script>
+</body>
+</html>
